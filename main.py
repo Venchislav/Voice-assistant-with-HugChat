@@ -5,6 +5,7 @@ from rcgnize import recognize_user
 import subprocess
 import pyttsx3
 from data import TOKEN
+from termcolor import colored
 
 # language model to generate speech from text
 # it's on russian (as I did it for myself), but you can set different language
@@ -25,11 +26,17 @@ if __name__ == '__main__':
         # our voice input
         input_ = recognize_user()
         # Here I mean if input is bye program breaks
-        if input_.lower() == 'пока':
+        if input_ == 'пока':
             break
+        if input_ == ' ':
+            tts.say('Не молчите! ')
+            print('Не молчите! ')
+            tts.runAndWait()
         else:
+            print(colored(f'User (you) - {input_}', "red"))
             print('connecting Bard: ')
             # say bard's response
-            tts.say(bard.get_answer(input_)['content'])
-            print(bard.get_answer(input_)['content'])
+            response = bard.get_answer(input_)['content']
+            tts.say(response.replace('*', ''))
+            print(colored(f'BardAi (assistant) - {response}', 'green'))
             tts.runAndWait()
