@@ -11,11 +11,11 @@ def recognize_user(*args: tuple):
 
         try:
             print('speak: ')
-            audio = recognizer.listen(microphone, 5, 5)
+            audio = recognizer.listen(microphone, 5, 30)
 
         except sr.WaitTimeoutError:
             print('Check your micro and speak')
-            return
+            return ' '
         try:
             print('Recognizing... ')
             data = recognizer.recognize_google(audio, language='ru').lower()
