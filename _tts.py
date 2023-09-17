@@ -2,6 +2,9 @@ import torch
 import sounddevice as sd
 import time
 from num2words import num2words
+import pyttsx3
+
+tts = pyttsx3.init()
 
 language = 'ru'
 model_id = 'v4_ru'
@@ -17,6 +20,10 @@ model, _ = torch.hub.load(repo_or_dir='snakers4/silero-models',
                           speaker=model_id)
 model.to(device)
 
+
+def say_tts(text):
+    tts.say(text)
+    tts.runAndWait()
 
 def say(text: str):
     for i in text.split():
@@ -36,14 +43,5 @@ def say(text: str):
         time.sleep((len(audio) / sample_rate) + 0.5)
         sd.stop()
     except Exception:
-        audio = model.apply_tts(text='Ошибка озвучки, читайте текст сами(',
-                                speaker=speaker,
-                                sample_rate=sample_rate,
-                                put_accent=put_accent,
-                                put_yo=put_yo,
-                                )
-
-        sd.play(audio, sample_rate * 1.05)
-        time.sleep((len(audio) / sample_rate) + 0.5)
-        sd.stop()
+        say_tts(text)
 
