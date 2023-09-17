@@ -1,17 +1,5 @@
 # libraries needed
-import speech_recognition as sr
-from bardapi import Bard
-from rcgnize import recognize_user
-import subprocess
-import pyttsx3
-from data import TOKEN
-from termcolor import colored
-
-# language model to generate speech from text
-# it's on russian (as I did it for myself), but you can set different language
-tts = pyttsx3.init()
-
-tts.setProperty('voice', 'ru')
+from libs_pack import *
 
 # create Bard lib object
 bard = Bard(token=TOKEN)
@@ -22,21 +10,24 @@ m = sr.Microphone()
 
 
 if __name__ == '__main__':
+    say('Привет, я Юджин. Голосовой помощник с Искусственным Интелектом. Чем могу помочь?')
+
     while True:
         # our voice input
         input_ = recognize_user()
         # Here I mean if input is bye program breaks
         if input_ == 'пока':
             break
-        if input_ == ' ':
-            tts.say('Не молчите! ')
-            print('Не молчите! ')
-            tts.runAndWait()
+        if (input_ == ' ') or (input_ == ''):
+            print('Не молчите! \n{"-"*60}')
+            say('Не молчите! ')
+
+        if ('найди в браузере' in input_) or ('найди в интернете' in input_):
+            wb.open(f'https://www.google.com/search?q={input_.replace("найди в браузере", "").replace("найди в интернете", "")}')
         else:
             print(colored(f'User (you) - {input_}', "red"))
-            print('connecting Bard: ')
+            print(f'{"-"*60}\n connecting Bard: \n {"-"*60}')
             # say bard's response
             response = bard.get_answer(input_)['content']
-            tts.say(response.replace('*', ''))
-            print(colored(f'BardAi (assistant) - {response}', 'green'))
-            tts.runAndWait()
+            print(colored(f'BardAi (assistant) - {response}\n{"-"*60}', 'green'))
+            say(response.replace('*', '').replace('>', '').replace('°C', 'Градусов цельсия').replace('-', ' '))
