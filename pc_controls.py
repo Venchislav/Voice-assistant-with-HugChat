@@ -6,5 +6,6 @@ programs = {'chrome': 'C:\Program Files\Google\Chrome\Application\chrome.exe',
             'steam': r'C:\Users\rayga\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Steam\Steam.lnk',
             'проводник': ''}
 
+
 def open_(program):
     os.startfile(programs[program])
