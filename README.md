@@ -1,4 +1,4 @@
-# Voice-assistant-with-Bard
+# VoiceAssistant-with-HugChat
 I created my own voice assistant with Google Bard using unofficial BardAPI.
 
 Link to unofficial BardAPI and it's docs: https://github.com/dsdanielpark/Bard-API/tree/main <br>
