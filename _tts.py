@@ -25,11 +25,11 @@ def say_tts(text):
     tts.say(text)
     tts.runAndWait()
 
+
 def say(text: str):
     for i in text.split():
         if i.isdigit():
             text = text.replace(i, num2words(i, lang='ru'))
-
 
     try:
         audio = model.apply_tts(text=text,
@@ -42,6 +42,6 @@ def say(text: str):
         sd.play(audio, sample_rate * 1.05)
         time.sleep((len(audio) / sample_rate) + 0.5)
         sd.stop()
+
     except Exception:
         say_tts(text)
-
