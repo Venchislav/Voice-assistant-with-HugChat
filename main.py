@@ -1,8 +1,6 @@
 # libraries needed
 from libs_pack import *
 
-# create Bard lib object
-bard = Bard(token=TOKEN)
 
 # init microphone and recognizer
 r = sr.Recognizer()
@@ -31,8 +29,8 @@ if __name__ == '__main__':
             open_(' '.join(input_.split()[1:]))
         else:
             print(colored(f'User (you) - {input_}', "red"))
-            print(f'{"-"*60}\n connecting Bard: \n {"-"*60}')
+            print(f'{"-"*60}\n connecting Hug: \n {"-"*60}')
             # say bard's response
-            response = bard.get_answer(input_)['content']
+            response = translator.translate(chatbot.chat(input_))
             print(colored(f'BardAi (assistant) - {response}\n{"-"*60}', 'green'))
             say(response.replace('*', '').replace('>', '').replace('°C', 'Градусов цельсия').replace('-', ' '))
