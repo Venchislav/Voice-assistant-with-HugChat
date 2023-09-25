@@ -3,6 +3,7 @@ I created my own voice assistant with Google Bard using open source HugChat.
 
 TTS by silero: https://github.com/snakers4/silero-models/tree/master <br>
 I also made TelegramBot with it: https://t.me/GoogleBartBot
+(Now server is off)
 
 <img src='https://media.tenor.com/e73LQkmBbcUAAAAC/mr-robot-happy.gif'>
 
